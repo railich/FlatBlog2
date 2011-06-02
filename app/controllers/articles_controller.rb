@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  validates :title, :body, :presence =>true
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   
   def index
@@ -13,7 +12,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-
+    @comments = Comment.get_comments(@article.id)
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @article }

@@ -1,0 +1,15 @@
+<%= form_for([@article, @article.comments.build]) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= hidden_field_tag :article_id, @article.id %>
+    <%= f.submit %>
+  </p>
+  
+<% end %>

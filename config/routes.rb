@@ -1,5 +1,9 @@
 FlatBlog2::Application.routes.draw do
-  resources :articles
+  
+
+  resources :articles do 
+    get "comment/create"
+  end
 
   devise_for :users
 
