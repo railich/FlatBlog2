@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :article_and_category, :only => [:show, :edit, :update, :destroy] 
   
   def index
     @articles = Article.all
-
+    @user_vote = Vote.user_vote(request.remote_ip())
+    
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @articles }
@@ -11,7 +13,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
     @comments = Comment.get_comments(@article.id)
     respond_to do |format|
       format.html 
@@ -21,7 +22,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-
+    @categories = Category.all
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @article }
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
 
   
   def edit
-    @article = Article.find(params[:id])
+    @categories = Category.all
   end
 
   def create
@@ -49,8 +50,6 @@ class ArticlesController < ApplicationController
 
 
   def update
-    @article = Article.find(params[:id])
-
     respond_to do |format|
       if @article.update_attributes(params[:article])
         format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
@@ -63,7 +62,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     respond_to do |format|
@@ -71,4 +69,12 @@ class ArticlesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+private
+ 
+  def article_and_category
+    @article = Article.find(params[:id])
+    @category = Category.find(@article.category_id)  
+  end
+  
 end

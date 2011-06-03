@@ -7,6 +7,20 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <div class="title">
+    <%if user_signed_in? %>
+      <!-- for signed user -->
+      Hi, <%= current_user.name %> (<%= current_user.email %>) &nbsp;|
+      <%= link_to 'New Article', new_article_path %>&nbsp;|
+      <%= link_to 'Edit profile', edit_user_registration_path %>&nbsp;|
+      <%= link_to 'Sign out', destroy_user_session_path %>&nbsp;
+
+     <% else %>
+      <!-- for unsigned user -->
+      <%= link_to 'Login', new_user_session_path %>&nbsp;|
+      <%= link_to 'Registration', new_user_registration_path %>&nbsp;
+     <% end %>  
+  </div>
  <p class="notice"><%= notice %></p>
  <p class="alert"><%= alert %></p>
 <%= yield %>

@@ -13,12 +13,10 @@
 
   <div class="field">
     <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
+    <%= collection_select(:article, :category_id, @categories, :id, :name) %><br />
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
+    
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -35,10 +33,7 @@
     <%= f.label :tags %><br />
     <%= f.text_field :tags %>
   </div>
-  <div class="field">
-    <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
-  </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

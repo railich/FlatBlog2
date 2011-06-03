@@ -2,12 +2,7 @@
 
 <p>
   <b>Category:</b>
-  <%= @article.category_id %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @article.user_id %>
+  <%= @category.name %>
 </p>
 
 <p>
@@ -35,7 +30,7 @@
 <%= link_to 'Back', articles_path %>
 
 
-<h3><%= @comments.count %> <%= Pluralize(@comments.count, "comment") %> on <%= @article.title %></h3>
+<h3><%= pluralize(@comments.count, "comment") %> on <%= @article.title %></h3>
 <ul id='comment_list'>
   <% @comments.each do |comment| %>
     <li>
@@ -46,5 +41,5 @@
   <% end %>
 </ul>
 <div id="writecomment">
-  render 'comment_form'
+  <%= render :partial => 'comment_form' %>
 </div>

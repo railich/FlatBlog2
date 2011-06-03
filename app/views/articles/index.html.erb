@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Category</th>
-    <th>User</th>
+
     <th>Title</th>
     <th>Body</th>
     <th>Url</th>
@@ -17,12 +17,17 @@
 <% @articles.each do |article| %>
   <tr>
     <td><%= article.category_id %></td>
-    <td><%= article.user_id %></td>
     <td><%= article.title %></td>
     <td><%= article.body %></td>
     <td><%= article.url %></td>
     <td><%= article.tags %></td>
+    <% if check_user_voted(article.id) %>
     <td><%= article.rating %></td>
+    <% else %>
+    <td><%= link_to '+', article %></td>
+    <td><%= article.rating %></td>
+    <td><%= link_to '+', article %></td>
+    <% end %>
     <td><%= link_to 'Show', article %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td>
     <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>

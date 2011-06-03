@@ -4,11 +4,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.label 'comment' %>
+    <%= f.text_area :body %>
   </p>
   <p>
-    <%= hidden_field_tag :article_id, @article.id %>
     <%= f.submit %>
   </p>
   
