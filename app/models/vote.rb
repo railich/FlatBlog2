@@ -5,6 +5,6 @@ class Vote < ActiveRecord::Base
   
 protected
   def self.user_vote(user_ip)
-    self.where("user_ip = ?", user_ip).map{|el| el.article_id}
+    self.where(:user_ip = > user_ip).map{|el| el.article_id}
   end
 end
