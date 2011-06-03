@@ -14,6 +14,8 @@
     <th></th>
   </tr>
 
+  
+  
 <% @articles.each do |article| %>
   <tr>
     <td><%= article.category_id %></td>
@@ -21,12 +23,13 @@
     <td><%= article.body %></td>
     <td><%= article.url %></td>
     <td><%= article.tags %></td>
+    
     <% if check_user_voted(article.id) %>
-    <td><%= article.rating %></td>
+      <td><%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %></td>
+      <td><%= article.rating %></td>
+      <td><%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %></td>
     <% else %>
-    <td><%= link_to '+', article %></td>
-    <td><%= article.rating %></td>
-    <td><%= link_to '+', article %></td>
+      <td><%= article.rating %></td>
     <% end %>
     <td><%= link_to 'Show', article %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td>
