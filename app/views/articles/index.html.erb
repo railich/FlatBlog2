@@ -1,43 +1,30 @@
-<h1>Listing articles</h1>
+<%= link_to 'New Article', new_article_path %><br/>
 
-<table>
-  <tr>
-    <th>Category</th>
-
-    <th>Title</th>
-    <th>Body</th>
-    <th>Url</th>
-    <th>Tags</th>
-    <th>Rating</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  
-  
-<% @articles.each do |article| %>
-  <tr>
-    <td><%= article.category_id %></td>
-    <td><%= article.title %></td>
-    <td><%= article.body %></td>
-    <td><%= article.url %></td>
-    <td><%= article.tags %></td>
-    
-    <% if check_user_voted(article.id) %>
-      <td><%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %></td>
-      <td><%= article.rating %></td>
-      <td><%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %></td>
-    <% else %>
-      <td><%= article.rating %></td>
-    <% end %>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<ul>
+  <% @articles.each do |article| %>
+    <li id='article_<%= article.id %>'>
+      
+      <%= article.title %>
+      <%= article.body %>
+      <%= article.url %>
+      <%= article.tags %>
+      
+      <% if check_user_voted(article.id) %>
+        <%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %>
+        <%= article.rating %>
+        <%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %>
+      <% else %>
+        <%= article.rating %>
+      <% end %>
+      <div>
+        <%= link_to 'Show', article %>
+        <%= link_to 'Edit', edit_article_path(article) %>
+        <%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %>
+        <p><%= article.category_id %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>
 <br />
 
 <%= link_to 'New Article', new_article_path %>
