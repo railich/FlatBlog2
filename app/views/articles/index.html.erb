@@ -1,30 +1,36 @@
-<%= link_to 'New Article', new_article_path %><br/>
+<div id='keys'>
+  <p><%= link_to 'New Article', new_article_path %></p>
+
+  <p><%= link_to @sort_text, sort_list %></p>
+</div>
 
 <ul>
   <% @articles.each do |article| %>
     <li id='article_<%= article.id %>'>
-      
-      <%= article.title %>
-      <%= article.body %>
-      <%= article.url %>
-      <%= article.tags %>
-      
-      <% if check_user_voted(article.id) %>
-        <%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %>
-        <%= article.rating %>
-        <%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %>
-      <% else %>
-        <%= article.rating %>
-      <% end %>
+      <h3><%= link_to article.title, article %></h3>
+      <p>Category <%= article.category.name %>. Posted <%= article.created_at %></p>
+      <p><%= article.body %></p>
       <div>
-        <%= link_to 'Show', article %>
+        <% if(user_signed_in?) %>
         <%= link_to 'Edit', edit_article_path(article) %>
         <%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %>
-        <p><%= article.category_id %></p>
+        <% end %>
       </div>
+      <ul>
+        <li><%= link_to(pluralize(comment_count(article),'comment'), article) %></li>
+        <li>url: <%= article.url %></li>
+        <li>tags: <%= article.tags %></li>
+        <li>rating:
+          <% if check_user_voted(article.id) %>
+            <%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %>
+            <span class="rating"><%= article.rating %></span>
+            <%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %>
+          <% else %>
+            <span class="rating"><%= article.rating %></span>
+          <% end %>
+        </li>
+      </ul>
     </li>
   <% end %>
 </ul>
-<br />
 
-<%= link_to 'New Article', new_article_path %>

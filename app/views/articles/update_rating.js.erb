@@ -1,1 +1,3 @@
-alert('article_id = <%= @article.id %>, article rating = <%= @article.rating %>')
+$(function(){
+  $("li#article_<%= @article.id %> ul li:last-child").html('rating: <span class="rating"><%= @article.rating %></span>');
+})

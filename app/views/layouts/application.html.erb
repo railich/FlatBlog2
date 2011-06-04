@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FlatBlog2</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag 'jquery.min', 'rails', 'application' %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-  <div class="title">
-    <%if user_signed_in? %>
-      <!-- for signed user -->
-      Hi, <%= current_user.name %> (<%= current_user.email %>) &nbsp;|
-      <%= link_to 'New Article', new_article_path %>&nbsp;|
-      <%= link_to 'Edit profile', edit_user_registration_path %>&nbsp;|
-      <%= link_to 'Sign out', destroy_user_session_path %>&nbsp;
+  <head>
+    <title>FlatBlog2</title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag 'jquery.min', 'rails', 'application' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="title">
+      <div>
+        <h1>FlatBlog&sup2;</h1>
+        <p>Test job at the rate of training of Ruby on Rails programmers from FlatSoft company</p>
+      </div>
+      <div>
+        <%if user_signed_in? %>
+          <!-- for signed user -->
+          Hi, <%= current_user.name %> (<%= current_user.email %>) &nbsp;|
+          <%= link_to 'New Article', new_article_path %>&nbsp;|
+          <%= link_to 'Edit profile', edit_user_registration_path %>&nbsp;|
+          <%= link_to 'Sign out', destroy_user_session_path %>&nbsp;
 
-     <% else %>
-      <!-- for unsigned user -->
-      <%= link_to 'Login', new_user_session_path %>&nbsp;|
-      <%= link_to 'Registration', new_user_registration_path %>&nbsp;
-     <% end %>  
-  </div>
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
-<%= yield %>
-
-</body>
+         <% else %>
+          <!-- for unsigned user -->
+          <%= link_to 'Login', new_user_session_path %>&nbsp;|
+          <%= link_to 'Registration', new_user_registration_path %>&nbsp;
+         <% end %>
+       </div>
+      <div>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+    <div id="footer"></div>
+  </body>
 </html>
+

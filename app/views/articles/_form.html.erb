@@ -10,31 +10,32 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
+    <%= f.text_field :url %>
+    <%= f.label :url %><br />
+  </div>
+  <div class="field">
+    <%= f.text_field :tags %>
+    <%= f.label :tags %><br />
+  </div>
+  <div class="field">
+    <%= collection_select(:article, :category_id, @categories, :id, :name) %>
     <%= f.label :category_id %><br />
-    <%= collection_select(:article, :category_id, @categories, :id, :name) %><br />
   </div>
-    
+
 
   <div class="field">
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
+    <%= f.label :title %><br />
   </div>
+
   <div class="field">
-    <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
-  </div>
+
   <br/>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

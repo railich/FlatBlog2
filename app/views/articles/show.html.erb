@@ -1,41 +1,22 @@
-<p id="notice"><%= notice %></p>
+<ul id='function_panel'>
+  <li><%= link_to 'Back to articles', articles_path %></li>
+</ul>
+<h3><%= @article.title %></h3>
+<p>Category <%= @category.name %>. Posted <%= @article.created_at %></p>
+<p><%= @article.body %></p>
 
-<p>
-  <b>Category:</b>
-  <%= @category.name %>
-</p>
+<ul id="article_panel">
+  <li><%= link_to 'Edit', edit_article_path(@article) %></li>
+  <li>url: <%= @article.url %></li>
+  <li>tags: <%= @article.tags %></li>
+</ul>
 
-<p>
-  <b>Title:</b>
-  <%= @article.title %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= @article.body %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @article.url %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= @article.tags %>
-</p>
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
-
-
-<h3><%= pluralize(@comments.count, "comment") %> on <%= @article.title %></h3>
+<h4><%= pluralize(@comments.count, "comment") %> on <%= @article.title %></h4>
 <ul id='comment_list'>
   <% @comments.each do |comment| %>
     <li>
       <span><%= comment.name %></span>
-      said <%= comment.created_at %>
+      said <%= comment.created_at.to_date %>
       <p><%= comment.body %></p>
     </li>
   <% end %>
@@ -43,3 +24,4 @@
 <div id="writecomment">
   <%= render :partial => 'comment_form' %>
 </div>
+
