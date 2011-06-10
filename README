@@ -12,5 +12,5 @@ FlatBlog2
 Что изменилось:
 
 1. Удалил непонятный скоп в моделе Comment:  scope :get_comments
- 
+2. Удалил плохую архитектуру в модели Vote def self.add_user(article_id, user_ip), теперь @article.votes.create!(...)
 
