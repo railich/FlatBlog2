@@ -1,0 +1,28 @@
+<ul>
+  <li id='<%= dom_id(article) %>'>
+    <h3><%= link_to article.title, article %></h3>
+    <p>Category <%= article.category.name %>. Posted <%= article.created_at %></p>
+    <p><%= article.body %></p>
+    <div>
+      <% if(user_signed_in?) %>
+        <%= link_to 'Edit', edit_article_path(article) %>
+        <%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </div>
+    <ul>
+      <li><%= link_to(pluralize(comment_count(article),'comment'), article) %></li>
+      <li>url: <%= article.url %></li>
+      <li>tags: <%= article.tags %></li>
+      <li>rating:
+        <% if check_user_voted(article.id) %>
+          <%= link_to '[+]', update_rating_path(article, :value => 1), :remote => true %>
+          <span class="rating"><%= article.rating %></span>
+          <%= link_to '[-]', update_rating_path(article, :value => -1), :remote => true %>
+        <% else %>
+          <span class="rating"><%= article.rating %></span>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
