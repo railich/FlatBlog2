@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comments = Comment.get_comments(@article.id)
+    @comments = @article.comments
     respond_to do |format|
       format.html
       format.xml  { render :xml => @article }
