@@ -13,4 +13,8 @@ FlatBlog2
 
 1. Удалил непонятный скоп в моделе Comment:  scope :get_comments
 2. Удалил плохую архитектуру в модели Vote def self.add_user(article_id, user_ip), теперь @article.votes.create!(...)
+3. Удалил ненужный контроллер Vote вместе с представлением
+      app/controllers/comment_controller.rb
+      app/controllers/votes_controller.rb
+      app/views/votes/create.html.erb
 
