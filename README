@@ -3,7 +3,7 @@ FlatBlog2
 
 Новая версия блога FlatBlog но с учетом ошибок.
 
-Перед использованием: 
+Перед использованием:
 
 1. создаем базу: rake db:create
 2. мигрируем таблицы: rake db:migrate
@@ -19,6 +19,9 @@ FlatBlog2
       app/controllers/comment_controller.rb
       app/controllers/votes_controller.rb
       app/views/votes/create.html.erb
-      
-4. спрятал плохие вьюхи... 
+
+4. спрятал плохие вьюхи...
       app/views/articles/index.html.erb => partial
+
+5. оптимизировал запросы к базе, путем добавления includes и механизма counter_cache
+
