@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603035056) do
+ActiveRecord::Schema.define(:version => 20110611031422) do
 
   create_table "articles", :force => true do |t|
     t.integer  "category_id"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(:version => 20110603035056) do
     t.text     "body"
     t.string   "url"
     t.string   "tags"
-    t.integer  "rating",      :default => 0
+    t.integer  "rating",         :default => 0
     t.date     "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count", :default => 0
   end
 
   create_table "categories", :force => true do |t|

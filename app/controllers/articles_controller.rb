@@ -82,7 +82,7 @@ class ArticlesController < ApplicationController
   def update_rating
     @remote_ip = request.remote_ip
     if @user_vote.grep(@article.id).count.zero?
-      @article.votes.create!(:user_ip => @remote_ip, :user_identity => (@article.id.to_s + '#' + @remote_ip.to_s))
+      @article.vote!(@remote_ip)
       @article.rating += params[:value].to_i
       if @article.save
         respond_to do |format|

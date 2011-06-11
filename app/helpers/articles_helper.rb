@@ -3,10 +3,6 @@ module ArticlesHelper
     @user_vote.grep(article_id).count.zero?
   end
 
-  def comment_count(article)
-    return article.comments.count.to_s
-  end
-
   def sort_list
     if params[:order]
       articles_path

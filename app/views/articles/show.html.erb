@@ -11,17 +11,9 @@
   <li>tags: <%= @article.tags %></li>
 </ul>
 
-<h4><%= pluralize(@comments.count, "comment") %> on <%= @article.title %></h4>
-<ul id='comment_list'>
-  <% @comments.each do |comment| %>
-    <li>
-      <span><%= comment.name %></span>
-      said <%= comment.created_at.to_date %>
-      <p><%= comment.body %></p>
-    </li>
-  <% end %>
-</ul>
+<h4><%= pluralize(@comments.size, "comment") %> on <%= @article.title %></h4>
+<ul id="comment_list"><%=render @comments %></ul>
 <div id="writecomment">
-  <%= render :partial => 'comment_form' %>
+  <%= render 'comment_form' %>
 </div>
 
