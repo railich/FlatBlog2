@@ -2,7 +2,7 @@
   <li><%= link_to 'Back to articles', articles_path %></li>
 </ul>
 <h3><%= @article.title %></h3>
-<p>Category <%= @category.name %>. Posted <%= @article.created_at %></p>
+<p>Category <%= @article.category %>. Posted <%= @article.created_at %></p>
 <p><%= @article.body %></p>
 
 <ul id="article_panel">

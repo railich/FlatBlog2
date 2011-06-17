@@ -1,8 +1,7 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :article_and_category, :only => [:show, :edit, :update, :destroy, :update_rating]
+  before_filter :article, :only => [:show, :edit, :update, :destroy, :update_rating]
   before_filter :user_vote, :only => [:index, :update_rating]
-  before_filter :categories, :only => [:show, :new, :edit]
   before_filter :set_rating, :only => [:index]
 
   def index
@@ -98,13 +97,8 @@ class ArticlesController < ApplicationController
     @user_vote = Vote.user_vote(request.remote_ip())
   end
 
-  def article_and_category
+  def article
     @article = Article.find(params[:id])
-    @category = Category.find(@article.category_id)
-  end
-
-  def categories
-     @categories = Category.all
   end
 
   def set_rating

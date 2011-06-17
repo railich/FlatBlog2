@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(:version => 20110611031422) do
 
   create_table "articles", :force => true do |t|
-    t.integer  "category_id"
     t.string   "title"
+    t.string   "category"
     t.text     "body"
     t.string   "url"
     t.string   "tags"
@@ -22,12 +22,6 @@ ActiveRecord::Schema.define(:version => 20110611031422) do
     t.date     "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
-  end
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "comments", :force => true do |t|

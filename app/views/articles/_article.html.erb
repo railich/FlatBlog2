@@ -1,6 +1,6 @@
   <li id='<%= dom_id(article) %>'>
     <h3><%= link_to article.title, article %></h3>
-    <p>Category <%= article.category.name %>. Posted <%= article.created_at %></p>
+    <p>Category <%= article.category %>. Posted <%= article.created_at %></p>
     <p><%= article.body %></p>
     <div>
       <% if(user_signed_in?) %>

@@ -1,8 +1,8 @@
 class CreateArticles < ActiveRecord::Migration
   def self.up
     create_table :articles do |t|
-      t.integer :category_id
       t.string :title
+      t.string :category
       t.text :body
       t.string :url
       t.string :tags

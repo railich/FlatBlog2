@@ -19,11 +19,9 @@
     <%= f.label :tags %><br />
   </div>
   <div class="field">
-    <%= collection_select(:article, :category_id, @categories, :id, :name) %>
-    <%= f.label :category_id %><br />
+    <%= f.select :category, Article::CATEGORY %>
+    <%= f.label :category %><br />
   </div>
-
-
   <div class="field">
     <%= f.text_field :title %>
     <%= f.label :title %><br />

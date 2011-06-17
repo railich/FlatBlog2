@@ -6,11 +6,10 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Category.create!([{:name =>'News'}, {:name =>'Sport'}, {:name =>'Humor'},{:name =>'World'}]) if Category.all.count.zero?
 
 Article.create!([
   {
-    :category_id => 1,
+    :category => 'News',
     :title => "EventMachine and Passenger",
     :body => "In order to fully explain this post, we first need to cover some back story. Originally, Gaug.es was hosted on Heroku. Recently, we moved Gaug.es to RailsMachine (before the great AWS outage luckily), where we are already happily hosting Harmony.
 
@@ -20,7 +19,7 @@ At Heroku, we were running on 1.9.2 and thin. The most common RailsMachine stack
     :rating => 10
   },
   {
-    :category_id => 1,
+    :category => 'Humor',
     :title => "SSH Tunneling in Ruby",
     :body => "The other day I wanted to do some queries in production, but our servers are pretty locked down to the outside world. I was well aware that I could just make an ssh tunnel to connect to the database server, but I decided I wanted to do it in Ruby.
 
@@ -30,7 +29,7 @@ I am not the brightest of crayons in the box, so it took me a bit. Since I strug
     :rating => 6
   },
   {
-    :category_id => 1,
+    :category => 'World',
     :title => "Give Yourself Constraints",
     :body => "Recently, I had a hernia and surgery to fix it. This knocked me out of the game and onto the couch for a couple weeks. During my recovery, I had a lot of time to think. I also had a lot of time to miss what I do every day.
 
@@ -39,7 +38,7 @@ This was the longest period in several years for me without creating. Once I fel
     :tags => "applications, gauges, and thoughts"
   },
   {
-    :category_id => 1,
+    :category => 'News',
     :title => "Improving Your Methods",
     :body => "I am always looking for ways to improve my efficiency while coding. One of the things that has been bothering me lately is how I run tests. Back in the day, I used autotest. Of late, I have been using watchr. Finally, this week I worked out something that does exactly what I want.",
     :url => "http://railstips.org",
